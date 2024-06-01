@@ -1,8 +1,22 @@
 <h1> Home </h1>
 <p>This is the {{ title }} page</p>
 
+<!--Iterate through the rooms-->
 <ul> 
     {{#rooms}}
-    <li>Room {{roomId}}</li>
+    <li><a href="/{{roomId}}">Room {{roomId}}</a></li>
     {{/rooms}}
 </ul>
+
+<!--Form for user to decide how to create rooms-->
+<form action="/create-room" method="POST">
+    <label for="roomName"> Enter room name: <br>
+    <input type="text" id="roomName" name="roomName" required><br>
+    <input type="hidden" name="randomRoomName" value="false">
+    <button type="submit">Create Room</button>
+</form>
+
+<form action="/create-room" method="POST">
+    <input type="hidden" name="randomRoomName" value="true">
+    <button type="submit">Create Random Room</button>
+</form>
