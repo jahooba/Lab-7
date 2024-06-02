@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 // Set schema fields for messages in rooms
 const messageSchema = new mongoose.Schema({
+    nickname: String,
     content: String,
     timestamp: {type: Date, default: Date.now}
 });

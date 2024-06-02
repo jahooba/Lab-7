@@ -3,9 +3,9 @@
 
 <!--Iterate through the rooms-->
 <ul> 
-    {{#rooms}}
+    {{#each rooms}}
     <li><a href="/{{roomId}}">Room {{roomId}}</a></li>
-    {{/rooms}}
+    {{/each}}
 </ul>
 
 <!--Form for user to decide how to create rooms-->
