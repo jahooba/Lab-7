@@ -4,8 +4,36 @@ const cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
 const path = require('path');
 
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://jpena079:PZ8J9sdjSquThjNe@cluster0.gz2bz2x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
+// const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
+
+// async function run() {
+//   try {
+//     // Create a Mongoose client with a MongoClientOptions object to set the Stable API version
+//     await mongoose.connect(uri, clientOptions);
+//     await mongoose.connection.db.admin().command({ ping: 1 });
+//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await mongoose.disconnect();
+//   }
+// }
+// run().catch(console.dir);
+
+// Connect to MongoDB 
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.log(err));
+
+
 // import handlers
 const homeHandler = require('./controllers/home.js');
+const createRoomHandler = require('./controllers/createRoom.js');
 const roomHandler = require('./controllers/room.js');
 
 const app = express();
@@ -28,6 +56,7 @@ app.set('view engine', 'hbs');
 
 // Create controller handlers to handle requests at each endpoint
 app.get('/', homeHandler.getHome);
+app.post('/create-room', createRoomHandler.createRoom);
 app.get('/:roomName', roomHandler.getRoom);
 
 // NOTE: This is the sample server.js code we provided, feel free to change the structures
