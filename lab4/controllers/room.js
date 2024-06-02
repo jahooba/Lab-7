@@ -1,10 +1,17 @@
-// Controller handler to handle functionality in room page
+const Room = require('../models/Room');
 
-const roomGenerator = require('../util/roomIdGenerator.js');
-
-// Example for handle a get request at '/:roomName' endpoint.
-function getRoom(request, response){
-    response.render('room', {title: 'chatroom', roomName: request.params.roomName, newRoomId: roomGenerator.roomIdGenerator()});
+async function getRoom(request, response) {
+    const roomName = request.params.roomName;
+    try {
+        const room = await Room.findOne({ roomId: roomName }).lean();
+        if (!room) {
+            return response.status(404).send('Room not found');
+        }
+        response.render('room', { title: 'chatroom', roomName: room.roomId });
+    } catch (err) {
+        console.error(err);
+        response.status(500).send('Server Error');
+    }
 }
 
 module.exports = {
