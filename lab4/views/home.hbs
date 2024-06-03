@@ -1,22 +1,29 @@
-<h1> Home </h1>
-<p>This is the {{ title }} page</p>
+<div class="home-container">
+    <h1> Home </h1>
+    <p>Choose a chatroom below!</p>
 
-<!--Iterate through the rooms-->
-<ul> 
-    {{#each rooms}}
-    <li><a href="/{{roomId}}">Room {{roomId}}</a></li>
-    {{/each}}
-</ul>
+    <!--Iterate through the rooms-->
+    <ul> 
+        {{#each rooms}}
+        <li><a href="/{{roomId}}">Room {{roomId}}</a></li>
+        {{/each}}
+    </ul>
 
-<!--Form for user to decide how to create rooms-->
-<form action="/create-room" method="POST">
-    <label for="roomName"> Enter room name: <br>
-    <input type="text" id="roomName" name="roomName" required><br>
-    <input type="hidden" name="randomRoomName" value="false">
-    <button type="submit">Create Room</button>
-</form>
+    <h2>------OR------</h2>
+    <h3>Create a room of your own!</h3>
 
-<form action="/create-room" method="POST">
-    <input type="hidden" name="randomRoomName" value="true">
-    <button type="submit">Create Random Room</button>
-</form>
+    <!--Form for user to decide how to create rooms-->
+    <form action="/create-room" method="POST">
+        <label for="roomName"> Name your room: <br>
+        <input type="text" id="roomName" name="roomName" required><br>
+        <input type="hidden" name="randomRoomName" value="false">
+        <button type="submit">Create Room</button>
+    </form>
+
+    <h3>------OR------</h3>
+
+    <form action="/create-room" method="POST">
+        <input type="hidden" name="randomRoomName" value="true">
+        <button type="submit">Create Random Room</button>
+    </form>
+</div>

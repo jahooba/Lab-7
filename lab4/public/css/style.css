@@ -1,1 +1,39 @@
 /* TODO: style each page */
+body {
+  background-color: black;
+  color: white;
+}
+
+.home-container {
+  background-color: beige;
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: green;
+}
+
+a:hover {
+  color: rgb(58, 199, 58);
+}
+
+form {
+  background-color: transparent;
+}
+
+button {
+  background-color: lightgreen;
+}
+
+button:hover {
+  background-color: rgb(171, 255, 171);
+}
